@@ -34,9 +34,9 @@ const MainStoryGrid = () => {
         <SectionTitle>Opinion</SectionTitle>
         <OpinionStoryList>
           {OPINION_STORIES.map((story, index) => (
-            <VerticalStoryWrapper key={story.id}>
+            <OpinionWrapper key={story.id}>
               <OpinionStory {...story} />
-            </VerticalStoryWrapper>
+            </OpinionWrapper>
           ))}
         </OpinionStoryList>
       </OpinionSection>
@@ -57,14 +57,46 @@ const Wrapper = styled.div`
     'advertisement';
   gap: 48px;
   margin-bottom: 48px;
+
+  @media ${QUERIES.tabletAndUp} {
+    gap: 0px;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      'main-story secondary-stories'
+      'advertisement advertisement'
+      'opinion-stories opinion-stories';
+    margin-bottom: 64px;
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    grid-template-columns: 4fr 3.5fr 2.5fr;
+    grid-template-areas: 
+    'main-story secondary-stories opinion-stories'
+    'main-story advertisement advertisement';
+  }
 `;
 
 const MainStorySection = styled.section`
   grid-area: main-story;
+  @media ${QUERIES.tabletAndUp} {
+    background: var(--color-gray-100);
+    padding-right: 16px;
+    border-right: 1px solid var(--color-gray-300);
+  }
 `;
 
 const SecondaryStorySection = styled.section`
   grid-area: secondary-stories;
+
+  @media ${QUERIES.tabletAndUp} {
+    padding-left: 16px;
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    padding-right: 16px;
+    padding-bottom: 16px;
+    border-right: 1px solid var(--color-gray-300);
+  }
 `;
 
 const OpinionStoryList = styled.div`
@@ -78,10 +110,25 @@ const OpinionStoryList = styled.div`
 
 const OpinionSection = styled.section`
   grid-area: opinion-stories;
+  @media ${QUERIES.laptopAndUp} {
+    padding-left: 16px;
+  }
 `;
 
 const AdvertisementSection = styled.section`
   grid-area: advertisement;
+  
+  @media ${QUERIES.tabletAndUp} {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  @media ${QUERIES.laptopAndUp} {
+    padding-top: 16px;
+    padding-bottom: revert;
+    border-top: 1px solid var(--color-gray-300);
+    margin-left: 16px;
+    margin-top: 16px;
+  }
 `;
 
 const VerticalStoryWrapper = styled.div`
@@ -90,7 +137,9 @@ const VerticalStoryWrapper = styled.div`
     padding-bottom: 16px;
     margin-bottom: 16px;
   }
+`
 
+const OpinionWrapper = styled(VerticalStoryWrapper)`
   @media ${QUERIES.tabletOnly} {
     &:not(:last-of-type) {
       border-bottom: revert;
