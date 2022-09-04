@@ -23,18 +23,20 @@ const MainStoryGrid = () => {
       </MainStorySection>
 
       <SecondaryStorySection>
-        <StoryList>
-          {SECONDARY_STORIES.map((story, index) => (
-            <SecondaryStory key={story.id} {...story} />
-          ))}
-        </StoryList>
+        {SECONDARY_STORIES.map((story, index) => (
+          <VerticalStoryWrapper key={story.id}>
+            <SecondaryStory {...story} />
+          </VerticalStoryWrapper>
+        ))}
       </SecondaryStorySection>
 
       <OpinionSection>
         <SectionTitle>Opinion</SectionTitle>
         <OpinionStoryList>
           {OPINION_STORIES.map((story, index) => (
-            <OpinionStory key={story.id} {...story} />
+            <VerticalStoryWrapper key={story.id}>
+              <OpinionStory {...story} />
+            </VerticalStoryWrapper>
           ))}
         </OpinionStoryList>
       </OpinionSection>
@@ -65,14 +67,9 @@ const SecondaryStorySection = styled.section`
   grid-area: secondary-stories;
 `;
 
-const StoryList = styled.div`
-  display: grid;
-  background: var(--color-gray-300);
-  gap: 1px;
-`;
-
-const OpinionStoryList = styled(StoryList)`
+const OpinionStoryList = styled.div`
   @media ${QUERIES.tabletOnly} {
+    display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 32px;
     background: revert;
@@ -86,5 +83,13 @@ const OpinionSection = styled.section`
 const AdvertisementSection = styled.section`
   grid-area: advertisement;
 `;
+
+const VerticalStoryWrapper = styled.div`
+  &:not(:last-of-type) {
+    border-bottom: 1px solid var(--color-gray-300);
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+`
 
 export default MainStoryGrid;

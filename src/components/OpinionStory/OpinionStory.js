@@ -4,7 +4,7 @@ import { QUERIES } from '../../constants';
 
 const OpinionStory = ({ id, title, author, avatar }) => {
   return (
-    <Link href={`/story/${id}`}>
+    <a href={`/story/${id}`}>
       <Wrapper>
         <Avatar alt="" src={avatar} />
         <Article>
@@ -12,13 +12,12 @@ const OpinionStory = ({ id, title, author, avatar }) => {
           <ArticleTitle>{title}</ArticleTitle>
         </Article>
       </Wrapper>
-    </Link>
+    </a>
   );
 };
 
 const Wrapper = styled.article`
   color: var(--color-gray-900);
-  background: var(--color-gray-100);
   display: grid;
   grid-template-areas: 'article avatar';
   gap: 21px;
@@ -51,25 +50,6 @@ const ArticleTitle = styled.h3`
   font-weight: var(--font-weight-bold);
   line-height: 1.3;
 `;
-
-const Link = styled.a`
-  background: var(--color-gray-100);
-  &:not(:first-of-type) {
-    padding-top: 16px;
-  }
-  &:not(:last-of-type) {
-    padding-bottom: 16px;
-  }
-
-  @media ${QUERIES.tabletOnly} {
-    &:not(:first-of-type) {
-      padding-top: 0px;
-    }
-    &:not(:last-of-type) {
-      padding-bottom: 0px;
-    }
-  }
-`
 
 const Article = styled.div`
   grid-area: article;
