@@ -7,10 +7,10 @@ const OpinionStory = ({ id, title, author, avatar }) => {
     <a href={`/story/${id}`}>
       <Wrapper>
         <Avatar alt="" src={avatar} />
-        <Article>
+        <div>
           <AuthorName>{author}</AuthorName>
           <ArticleTitle>{title}</ArticleTitle>
-        </Article>
+        </div>
       </Wrapper>
     </a>
   );
@@ -18,14 +18,6 @@ const OpinionStory = ({ id, title, author, avatar }) => {
 
 const Wrapper = styled.article`
   color: var(--color-gray-900);
-  display: grid;
-  grid-template-areas: 'article avatar';
-  gap: 21px;
-  
-  @media ${QUERIES.tabletOnly} {
-    display: flex;
-    flex-direction: column;
-  }
 `;
 
 const Avatar = styled.img`
@@ -34,8 +26,13 @@ const Avatar = styled.img`
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  grid-area: avatar;
-  justify-self: end;
+  float: right;
+  margin-left: 16px;
+
+  @media ${QUERIES.tabletOnly} {
+    float: revert;
+    margin-left: revert;
+  }
 `;
 
 const AuthorName = styled.p`
@@ -50,9 +47,5 @@ const ArticleTitle = styled.h3`
   font-weight: var(--font-weight-bold);
   line-height: 1.3;
 `;
-
-const Article = styled.div`
-  grid-area: article;
-`
 
 export default OpinionStory;

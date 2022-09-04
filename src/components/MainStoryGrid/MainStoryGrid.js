@@ -90,6 +90,14 @@ const VerticalStoryWrapper = styled.div`
     padding-bottom: 16px;
     margin-bottom: 16px;
   }
+
+  @media ${QUERIES.tabletOnly} {
+    &:not(:last-of-type) {
+      border-bottom: revert;
+      padding-bottom: revert;
+      margin-bottom: revert;
+    }
+  }
 `
 
 export default MainStoryGrid;
